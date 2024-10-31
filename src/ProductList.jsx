@@ -251,13 +251,17 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
   const [addedToCart,setAddedToCart] = useState({});
+  const UpdateCart = (nb) =>{   
+    setTotalIncart((prevValue)=>(prevValue + nb)); 
+    console.log("++");
+  }
   const handleAddToCart = (product) => {    
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
        ...prevState,
        [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
      }));
-     setTotalIncart((prevValue)=>(prevValue + 1));     
+     setTotalIncart((prevValue)=>(prevValue + 1)); 
   };
   
     return (
@@ -316,7 +320,8 @@ const handlePlantsClick = (e) => {
     </div>
 
  ) :  (
-    <CartItem onContinueShopping={handleContinueShopping}/>
+    <CartItem onContinueShopping={handleContinueShopping} 
+    onChageCart={UpdateCart}/>
 )}
     </div>
     );
